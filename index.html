@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ohio Garage Doors & More - Garage Door Experts<br>Serving Cincinnati,<br>Dayton & Beyond</title>
+    <title>Ohio Garage Doors & More - Garage Door Experts Serving Dayton & Beyond</title>
     <style>
         /* Updated Color Palette - Pure Green Theme */
         :root {
@@ -544,7 +544,19 @@
             }
         }
 
-        /* Responsive Design */
+        /* Responsive Text - Hide/Show Method */
+        .hero-title-mobile { 
+            display: none; 
+        }
+
+        @media (max-width: 768px) {
+            .hero-title-desktop { 
+                display: none; 
+            }
+            .hero-title-mobile { 
+                display: block; 
+            }
+        }
         @media (max-width: 768px) {
             .company-logo {
                 max-width: 300px;
@@ -559,7 +571,9 @@
                 font-size: 2rem;
             }
 
-            .hero-content h1 {
+            .hero-content h1,
+            .hero-title-desktop,
+            .hero-title-mobile {
                 font-size: 2.5rem;
             }
 
@@ -679,8 +693,9 @@
         </div>
         
         <div class="hero-content">
-            <h1>Garage Door Experts<br>Serving Cincinnati,<br>Dayton & Beyond</h1>
-            <p>Professional installation, repair & maintenance for residential<br>and commercial garage doors across Greater Cincinnati and Dayton areas</p>
+            <h1 class="hero-title-desktop">Garage Door Experts Serving Dayton & Beyond</h1>
+            <h1 class="hero-title-mobile">Garage Door Experts<br>Serving Dayton & Beyond</h1>
+            <p>Professional installation, repair & maintenance for residential and commercial garage doors across Greater Dayton and Cincinnati areas</p>
             <a href="#contact" class="cta-button">Request a Free Estimate</a>
         </div>
         
@@ -693,8 +708,8 @@
     <!-- Services Section -->
     <section class="services">
         <div class="container">
-            <h2 class="section-title">Our Expert<br>Services</h2>
-            <p class="section-subtitle">Comprehensive garage<br>door solutions for your home<br>or business</p>
+            <h2 class="section-title">Our Expert Services</h2>
+            <p class="section-subtitle">Comprehensive garage door solutions for your home or business</p>
             
             <div class="services-grid">
                 <div class="service-card">
