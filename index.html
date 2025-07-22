@@ -577,15 +577,42 @@
         }
 
         /* Responsive Text - Hide/Show Method */
-        .hero-title-mobile { 
+        .hero-title-mobile, 
+        .hero-content-mobile { 
             display: none; 
         }
 
+        .hero-content-mobile img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .mobile-quote-button {
+            display: inline-block;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-quote-button:hover .quote-normal {
+            display: none;
+        }
+
+        .mobile-quote-button:hover .quote-hover {
+            display: inline;
+        }
+
+        .mobile-quote-button .quote-hover {
+            display: none;
+        }
+
         @media (max-width: 768px) {
-            .hero-title-desktop { 
+            .hero-title-desktop, 
+            .hero-content p, 
+            .cta-button { 
                 display: none; 
             }
-            .hero-title-mobile { 
+            .hero-title-mobile, 
+            .hero-content-mobile { 
                 display: block; 
             }
         }
@@ -751,10 +778,19 @@
         </div>
         
         <div class="hero-content">
+            <!-- Desktop Content -->
             <h1 class="hero-title-desktop">Garage Door Experts Serving Dayton & Beyond</h1>
-            <h1 class="hero-title-mobile">Garage Door Experts Serving Dayton & Beyond</h1>
             <p>Professional installation, repair & maintenance for residential and commercial garage doors across Greater Dayton and Cincinnati areas</p>
             <a href="#contact" class="cta-button">Request a Free Estimate</a>
+            
+            <!-- Mobile Content -->
+            <div class="hero-content-mobile">
+                <img src="garage-text.png" alt="Garage Door Experts Serving Dayton & Beyond" class="mobile-hero-text">
+                <a href="#contact" class="mobile-quote-button">
+                    <img src="quote-button.png" alt="Request a Free Estimate" class="quote-normal">
+                    <img src="quote-button-click.png" alt="Request a Free Estimate" class="quote-hover">
+                </a>
+            </div>
         </div>
         
         <div class="scroll-instruction">
