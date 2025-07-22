@@ -634,9 +634,24 @@
             }
 
             .footer-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
                 text-align: center;
+            }
+
+            .footer-logo img {
+                max-width: 200px;
+            }
+
+            .footer-nav-links {
+                font-size: 1rem;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .footer-nav-links .separator {
+                display: none;
             }
 
             .section-title {
@@ -727,7 +742,7 @@
         
         <div class="hero-content">
             <h1 class="hero-title-desktop">Garage Door Experts Serving Dayton & Beyond</h1>
-            <h1 class="hero-title-mobile">Garage Door Experts<br>Serving Dayton & Beyond</h1>
+            <h1 class="hero-title-mobile">Garage Door Experts Serving<br>Dayton & Beyond</h1>
             <p>Professional installation, repair & maintenance for residential and commercial garage doors across Greater Dayton and Cincinnati areas</p>
             <a href="#contact" class="cta-button">Request a Free Estimate</a>
         </div>
