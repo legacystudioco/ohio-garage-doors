@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ohio Garage Doors & More - Garage Door Experts Serving Dayton & Beyond</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            background: #FFFFFF;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Hero Section with Garage Door */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #003366 0%, #0066CC 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Background pattern */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="2" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="1.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="1" fill="white" opacity="0.1"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-100px) translateY(-100px) rotate(0deg); }
+            100% { transform: translateX(100px) translateY(100px) rotate(360deg); }
+        }
+
+        /* Garage Door Container */
+        .garage-door-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .garage-door-container.opened {
+            transform: translateY(-100%);
+        }
+
+        /* Garage Door Image */
+        .garage-door-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        /* Fallback for when image is loading */
+        .garage-door-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #DDDDDD 0%, #BBBBBB 50%, #999999 100%);
+            z-index: -1;
+        }
+
+        /* Logo Overlay on Door */
+        .door-logo-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 12;
+            text-align: center;
+        }
+
+        .company-logo {
+            max-width: 300px;
+            max-height: 200px;
+            width: auto;
+            height: auto;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+            transition: all 0.3s ease;
+        }
+
+        /* Alternative text logo if no image provided */
+        .text-logo {
+            background: rgba(0,51,102,0.9);
+            color: white;
+            padding: 40px 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .text-logo h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #0066CC;
+        }
+
+        .text-logo p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Hero Content Behind Door */
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 5;
+            opacity: 0;
+            transition: opacity 1s ease 0.5s;
+        }
+
+        .garage-door-container.opened + .hero-content {
+            opacity: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #0066CC, #0080FF);
+            color: white;
+            padding: 18px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 25px rgba(0,102,204,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,102,204,0.4);
+        }
+
+        /* Scroll Instruction */
+        .scroll-instruction {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            text-align: center;
+            z-index: 15;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-instruction p {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .scroll-arrow {
+            font-size: 1.5rem;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #F8F9FF 0%, #FFFFFF 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            color: #003366;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 60px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,51,102,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #EEEEEE;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,51,102,0.15);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #0066CC, #003366);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: #003366;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: #003366;
+            color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #0066CC, #0080FF);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            text-align: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #F8F9FF 0%, #FFFFFF 100%);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,51,102,0.08);
+            border-left: 5px solid #0066CC;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #003366;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: #003366;
+            color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .contact-item strong {
+            display: block;
+            color: #0066CC;
+            margin-bottom: 5px;
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #0066CC, #0080FF);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,102,204,0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: #001a33;
+            color: white;
+            padding: 50px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0066CC;
+            margin-bottom: 15px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #0066CC;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            opacity: 0.8;
+        }
+
+        /* Emergency Banner */
+        .emergency-banner {
+            background: linear-gradient(45deg, #FF4444, #CC0000);
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .company-logo {
+                max-width: 200px;
+                max-height: 130px;
+            }
+            
+            .text-logo {
+                padding: 30px 40px;
+            }
+            
+            .text-logo h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .company-logo {
+                max-width: 150px;
+                max-height: 100px;
+            }
+            
+            .text-logo h1 {
+                font-size: 1.6rem;
+            }
+            
+            .text-logo p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Garage door scroll animation
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.pageYOffset;
+            const windowHeight = window.innerHeight;
+            const garageDoor = document.getElementById('garageDoor');
+            
+            // Start opening when user scrolls 10% of viewport
+            if (scrollPosition > windowHeight * 0.1) {
+                garageDoor.classList.add('opened');
+            } else {
+                garageDoor.classList.remove('opened');
+            }
+        });
+    </script>
+
+    <!-- Emergency Banner -->
+    <div class="emergency-banner">
+        🚨 24/7 EMERGENCY SERVICE AVAILABLE - CALL (513) 995-2535 🚨
+    </div>
+
+    <!-- Hero Section with Garage Door -->
+    <section class="hero">
+        <div class="garage-door-container" id="garageDoor">
+            <!-- Replace 'garage-door.jpg' with your actual garage door image filename -->
+            <img src="garage-door.jpg" alt="Garage Door" class="garage-door-image">
+            
+            <div class="door-logo-overlay">
+                <!-- Option 1: Use your company logo image (recommended) -->
+                <!-- <img src="company-logo.png" alt="Ohio Garage Doors & More Logo" class="company-logo"> -->
+                
+                <!-- Option 2: Text logo fallback (remove this when you add image logo) -->
+                <div class="text-logo">
+                    <h1>OGDM</h1>
+                    <p>Ohio Garage Doors & More</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-content">
+            <h1>Garage Door Experts Serving Dayton & Beyond</h1>
+            <p>Professional installation, repair & maintenance for residential and commercial garage doors across Greater Dayton and Cincinnati areas</p>
+            <a href="#contact" class="cta-button">Request a Free Estimate</a>
+        </div>
+        
+        <div class="scroll-instruction">
+            <p>Scroll to Open</p>
+            <div class="scroll-arrow">⬇</div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Our Expert Services</h2>
+            <p class="section-subtitle">Comprehensive garage door solutions for your home or business</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🚪</div>
+                    <h3>New Installation</h3>
+                    <p>Expert installation of sectional doors, full-view doors, rolling steel doors, and custom designs to enhance your property's curb appeal and security.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Repairs & Maintenance</h3>
+                    <p>Fast, reliable repair services for broken springs, off-track doors, damaged panels, and comprehensive yearly preventative maintenance programs.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">⚙️</div>
+                    <h3>Garage Door Openers</h3>
+                    <p>Installation and repair of standard operators, ultra-quiet belt drive systems, side-mounted operators, and gate operators for complete automation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <div>
+                        <strong>Company Photo Placeholder</strong><br>
+                        Professional team image here
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h2>About Ohio Garage Doors & More</h2>
+                    <p>Family-owned and operated, Ohio Garage Doors & More has proudly served the Greater Dayton and Cincinnati areas for over 20 years. We combine quality craftsmanship with friendly, honest service, ensuring every installation and repair meets the highest standards. Our experienced technicians are committed to keeping your garage doors operating safely and reliably, with 24/7 emergency service when you need it most.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"Outstanding service from start to finish! They replaced our old garage door opener and it's whisper quiet now. The technician was professional and cleaned up perfectly."</div>
+                    <div class="testimonial-author">- Sarah M., Dayton</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"Called them for an emergency repair when our spring broke. They came out the same day and had us back up and running quickly. Fair pricing and excellent work!"</div>
+                    <div class="testimonial-author">- Mike R., Centerville</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"We've used Ohio Garage Doors for both our home and business. Always reliable, always professional. Their preventative maintenance program has saved us money over the years."</div>
+                    <div class="testimonial-author">- Jennifer L., Springboro</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Get Your Free Estimate</h2>
+                    
+                    <div class="contact-item">
+                        <strong>Phone:</strong>
+                        (513) 995-2535
+                    </div>
+                    
+                    <div class="contact-item">
+                        <strong>Email:</strong>
+                        info@ohiogaragedoorsandmore.com
+                    </div>
+                    
+                    <div class="contact-item">
+                        <strong>Service Areas:</strong>
+                        Greater Dayton, Cincinnati & Surrounding Areas
+                    </div>
+                    
+                    <div class="contact-item">
+                        <strong>Emergency Service:</strong>
+                        Available 24/7 (Emergency rates apply)
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Service Needed</label>
+                            <input type="text" id="service" name="service" placeholder="e.g., New installation, repair, opener replacement">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell us about your garage door needs..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Send Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">Ohio Garage Doors & More</div>
+                    <p>Your trusted garage door experts serving Greater Dayton and Cincinnati for over 20 years.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Installation</a></li>
+                        <li><a href="#">Repairs</a></li>
+                        <li><a href="#">Openers</a></li>
+                        <li><a href="#">Emergency Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ohio Garage Doors & More. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
