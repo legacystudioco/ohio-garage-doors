@@ -15,27 +15,18 @@
             --border-light: #DDDDDD;
             --shadow-light: #EEEEEE;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
             background: var(--background);
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
-        /* Header Hero Section with Garage Door */
         .hero {
             height: 100vh;
             position: relative;
@@ -306,7 +297,62 @@
             }
         }
 
-        /* ---- The rest of your CSS is unchanged ---- */
+        /* ---- Service Card Images ---- */
+        .service-icon {
+            width: 110px;
+            height: 110px;
+            border-radius: 24px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--hunter-green) 65%, var(--pine-green) 100%);
+            box-shadow: 0 3px 18px rgba(1,50,32,0.05);
+            overflow: hidden;
+        }
+        .service-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            display: block;
+            background: #fff;
+        }
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: var(--dark-green);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* ---- About Section Image ---- */
+        .about-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, var(--hunter-green), var(--pine-green));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+            padding: 0;
+        }
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            display: block;
+        }
+
+        /* The rest is unchanged... */
         .services {
             padding: 80px 0;
             background: linear-gradient(180deg, #F8F9FF 0%, var(--background) 100%);
@@ -343,28 +389,6 @@
             transform: translateY(-10px);
             box-shadow: 0 20px 50px rgba(53, 94, 59, 0.15);
         }
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--hunter-green), var(--pine-green));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            font-size: 2rem;
-            color: white;
-        }
-        .service-card h3 {
-            font-size: 1.5rem;
-            color: var(--dark-green);
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-        .service-card p {
-            color: var(--text-light);
-            line-height: 1.7;
-        }
         .about {
             padding: 80px 0;
             background: var(--dark-green);
@@ -375,18 +399,6 @@
             grid-template-columns: 1fr 2fr;
             gap: 60px;
             align-items: center;
-        }
-        .about-image {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, var(--hunter-green), var(--pine-green));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: white;
-            text-align: center;
         }
         .about-text h2 {
             font-size: 2.5rem;
@@ -595,20 +607,12 @@
             <img src="garage-door.jpg" alt="Garage Door" class="garage-door-image">
             <div class="door-logo-overlay">
                 <img src="company-logo.png" alt="Ohio Garage Doors & More Logo" class="company-logo">
-                <!-- Or use text fallback:
-                <div class="text-logo">
-                    <h1>OGDM</h1>
-                    <p>Ohio Garage Doors & More</p>
-                </div>
-                -->
             </div>
         </div>
         <div class="hero-content">
-            <!-- Desktop Content -->
             <h1 class="hero-title-desktop">Garage Door Experts Serving Dayton & Beyond</h1>
             <p>Professional installation, repair & maintenance for residential and commercial garage doors across Greater Dayton and Cincinnati areas</p>
             <a href="#contact" class="cta-button">Request a Free Estimate</a>
-            <!-- Mobile Content -->
             <div class="hero-content-mobile">
                 <img src="garage-text.png" alt="Garage Door Experts Serving Dayton & Beyond" class="mobile-hero-text">
                 <a href="#contact" class="mobile-quote-button">
@@ -630,17 +634,23 @@
             <p class="section-subtitle">Comprehensive garage door solutions for your home or business</p>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">🚪</div>
+                    <div class="service-icon">
+                        <img src="new-instal.png" alt="New Garage Door Installation">
+                    </div>
                     <h3>New Installation</h3>
                     <p>Expert installation of sectional doors, full-view doors, rolling steel doors, and custom designs to enhance your property's curb appeal and security.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🔧</div>
+                    <div class="service-icon">
+                        <img src="repairs-maintenance.png" alt="Garage Door Repairs & Maintenance">
+                    </div>
                     <h3>Repairs & Maintenance</h3>
                     <p>Fast, reliable repair services for broken springs, off-track doors, damaged panels, and comprehensive yearly preventative maintenance programs.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">⚙️</div>
+                    <div class="service-icon">
+                        <img src="replace-opener.png" alt="Garage Door Openers">
+                    </div>
                     <h3>Garage Door Openers</h3>
                     <p>Installation and repair of standard operators, ultra-quiet belt drive systems, side-mounted operators, and gate operators for complete automation.</p>
                 </div>
@@ -653,10 +663,7 @@
         <div class="container">
             <div class="about-content">
                 <div class="about-image">
-                    <div>
-                        <strong>Company Photo Placeholder</strong><br>
-                        Professional team image here
-                    </div>
+                    <img src="about-us.png" alt="About Ohio Garage Doors & More Team">
                 </div>
                 <div class="about-text">
                     <h2>About Ohio Garage Doors & More</h2>
